@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Student Feedback</title>
+<style>
+body{font-family:Arial}
+form{width:320px;margin:20px}
+input, textarea{width:100%;margin:5px 0;padding:6px}
+.error{color:red;font-size:12px}
+</style>
+</head>
+
+<body>
+
+<form onsubmit="return validate()">
+<h3>Student Feedback Form</h3>
+
+<input type="text" id="name" placeholder="Student Name">
+<div id="e1" class="error"></div>
+
+<input type="text" id="email" placeholder="Email">
+<div id="e2" class="error"></div>
+
+Course:<br>
+<input type="radio" name="course"> BCA
+<input type="radio" name="course"> BSc
+<input type="radio" name="course"> BCom
+<div id="e3" class="error"></div>
+
+<textarea id="msg" placeholder="Your Feedback"></textarea>
+<div id="e4" class="error"></div>
+
+<input type="checkbox" id="agree"> I confirm the feedback is genuine
+<div id="e5" class="error"></div><br>
+
+<input type="submit" value="Submit">
+</form>
+
+<script>
+function validate(){
+let ok=true;
+
+
+e1.innerHTML=e2.innerHTML=e3.innerHTML=e4.innerHTML=e5.innerHTML="";
+
+if(name.value==""){e1.innerHTML="Enter name"; ok=false;}
+
+if(!email.value.includes("@")){
+    e2.innerHTML="Invalid email"; ok=false;
+}
+
+if(!document.querySelector('input[name="course"]:checked')){
+    e3.innerHTML="Select course"; ok=false;
+}
+
+if(msg.value==""){
+    e4.innerHTML="Feedback required"; ok=false;
+}
+
+if(!agree.checked){
+    e5.innerHTML="Please confirm"; ok=false;
+}
+
+return ok;
+}
+</script>
+
+</body>
+</html>
